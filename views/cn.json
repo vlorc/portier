@@ -1,0 +1,9 @@
+{
+  "title": "邮箱验证",
+  "submit": "提交",
+  "subject": "验证码",
+  "mail_content": "您收到此邮件，以便我们确认您的电子邮件地址, 验证码：",
+  "captcha_failed": "咋啦还不对，再来一发",
+  "captcha_sent": "验证码已飞奔向您来咯",
+  "mail_reject": "这邮箱我不支持哦"
+}

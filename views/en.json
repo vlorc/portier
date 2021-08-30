@@ -1,0 +1,9 @@
+{
+  "title": "Mail Verify",
+  "submit": "OK",
+  "subject": "Captcha",
+  "mail_content": "You received this email so that we may confirm your email address, please enter captcha code：",
+  "mail_reject": "Sorry, this email not supported",
+  "captcha_failed": "Verify failed, please re-enter",
+  "captcha_sent": "The captcha code has been sent"
+}

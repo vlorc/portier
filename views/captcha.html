@@ -1,0 +1,32 @@
+Subject: {{ .dict.subject }}
+To: {{ .to }}
+From: {{ .from }}
+MIME-version: 1.0;
+Content-Type: text/html; charset="UTF-8";
+
+<head>
+    <base target="_blank">
+    <style type="text/css">
+        ::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+
+<body tabindex="0" role="listitem">
+<table width="700" border="0" align="center" cellspacing="0" style="width:700px;">
+    <tbody>
+    <tr>
+        <td>
+            <div style="width:680px;padding:0 10px;margin:0 auto;">
+                <div style="line-height:1.5;font-size:14px;margin-bottom:25px;color:#4d4d4d;">
+                    <strong>
+                        {{ .dict.mail_content }} <span style="color:#f60;font-size: 24px">{{ .code }}</span>
+                    </strong>
+                </div>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>

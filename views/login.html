@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{{ .dict.title }}</title>
+    <style>
+    html, body {
+        height: 100%;
+    }
+
+    body {
+        background-color: black;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: Inconsolata, sans-serif;
+        color: white;
+    }
+
+    h1 {
+        margin-top: 30px;
+    }
+
+    form {
+        display: flex;
+        align-items: stretch;
+        height: 40px;
+        margin-top: 30px;
+    }
+
+    input {
+        border: 1px solid purple;
+        font-family: Inconsolata, sans-serif;
+    }
+
+    input[type=submit] {
+        padding: 10px;
+        background-color: purple;
+        color: white;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    }
+
+    input[type=submit]:hover {
+        background-color: white;
+        color: purple;
+    }
+
+    input[type=email] {
+        padding: 10px;
+        border-right: 0;
+        outline: none;
+        min-width: 170px;
+    }
+
+    input[type=text] {
+        padding: 10px;
+        width: 30px;
+        border-left: 0;
+        border-right: 0;
+        outline: none;
+    }
+
+    .results {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10px;
+    }
+
+    .results p {
+        margin: 0;
+        line-height: 20px;
+    }
+    </style>
+</head>
+
+<body>
+    <h1>{{ .dict.title }}</h1>
+    <div>
+        <form id="form" method="post">
+            <input type="email" id="mail" name="mail" placeholder="Email" value="{{ .mail }}" required />
+            <input type="text" id="code" name="code" placeholder="Code" maxlength="4" {{ .required }} />
+            <input type="submit" value="{{ .dict.submit }}">
+        </form>
+        <div class='results'>
+            <p> {{ .message }}</p>
+        </div>
+    </div>
+</body>
