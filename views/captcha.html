@@ -1,12 +1,12 @@
-Subject: {{ .dict.subject }}
+Subject: =?UTF-8?B?{{ .dict.subject | base64 }}?=
 To: {{ .to }}
 From: {{ .from }}
 MIME-version: 1.0;
-Content-Type: text/html; charset="UTF-8";
+Content-Type: text/html; charset=UTF-8;
 
 <head>
     <base target="_blank">
-    <style type="text/css">
+    <style>
         ::-webkit-scrollbar {
             display: none;
         }
@@ -21,7 +21,7 @@ Content-Type: text/html; charset="UTF-8";
             <div style="width:680px;padding:0 10px;margin:0 auto;">
                 <div style="line-height:1.5;font-size:14px;margin-bottom:25px;color:#4d4d4d;">
                     <strong>
-                        {{ .dict.mail_content }} <span style="color:#f60;font-size: 24px">{{ .code }}</span>
+                        {{ index .dict "mail.content" }} <span style="color:#f60;font-size: 24px">{{ .code }}</span>
                     </strong>
                 </div>
             </div>

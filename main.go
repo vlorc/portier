@@ -7,6 +7,7 @@ import (
 	"crypto/rand"
 	"crypto/tls"
 	"embed"
+	"encoding/base64"
 	"encoding/hex"
 	"encoding/json"
 	"flag"
@@ -212,7 +213,14 @@ func main() {
 
 	mapping := sync.Map{}
 	dict := map[string]string{}
-	tmpl, err := template.ParseFS(fsys, "login.html", "captcha.html")
+
+	tmpl, err := template.New("").
+		Funcs(template.FuncMap{
+			"base64": func(v string) template.HTML {
+				return template.HTML(base64.StdEncoding.EncodeToString(tobytes(v)))
+			},
+		}).
+		ParseFS(fsys, "login.html", "captcha.html")
 	if nil != err {
 		log.Println(err.Error())
 	}
@@ -227,19 +235,19 @@ func main() {
 		switch {
 		case http.MethodGet == req.Method:
 		case !valid(mail):
-			data["message"] = dict["mail_reject"]
+			data["message"] = dict["mail.reject"]
 		case "" == code:
 			code = nonce()
 			mapping.Store(mail, code)
 			data["code"] = code
 			data["required"] = "required"
-			data["message"] = dict["captcha_sent"]
+			data["message"] = dict["captcha.sent"]
 			log.Println("send mail:", mail, "code:", code, "error:", send(mail, tmpl, data))
 		default:
 			if v, ok := mapping.LoadAndDelete(mail); ok && code == v.(string) {
 				return setup(resp)
 			}
-			data["message"] = dict["captcha_failed"]
+			data["message"] = dict["captcha.failed"]
 		}
 		tmpl.ExecuteTemplate(resp, "login.html", data)
 		return false
